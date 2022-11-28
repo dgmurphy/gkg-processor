@@ -4,12 +4,11 @@ import pandas as pd
 from requests import get 
 import sys
 import pymongo
+import time
 from lib.mongo import get_database
+from lib.constants import GKG_MASTER_LISTS_URL, ZIPS_MASTER, ZIPS_COMPLETED
 
 
-GKG_MASTER_LISTS_URL = "http://data.gdeltproject.org/gdeltv2/masterfilelist.txt"
-ZIPS_MASTER = "zips_master_queue"
-ZIPS_COMPLETED = "zips_completed"
 
 # DEBUG Only
 DEBUG_URLS = ["a2178916 6775f42fcc8f080e28d8a58eca86393b http://data.gdeltproject.org/gdeltv2/20150219144500.gkg.csv.zip",
@@ -106,11 +105,14 @@ def main():
         logging.info("Connection to MongoDB...")
         db = get_database()
 
-        get_master_GKGs(db)
-
         # For reference
         latest = db[ZIPS_MASTER].find().sort("date", -1).limit(1)[0]
         logging.info(f"Latest ZIP found was: {str(latest)}")
+
+        while True:
+            get_master_GKGs(db)
+            time.sleep(60 * 120) # pause 2 hours for more urls to be added
+
 
     except Exception as e:
          logging.critical(str(e))
