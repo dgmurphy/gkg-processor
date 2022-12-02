@@ -20,7 +20,7 @@ ZIPS_COMPLETED = "zips_completed"
 
 GKG_RECORDS = "gkg_records"
 
-DATA_DIR = "/home/dmurphy/dev/gkg-processor/data/"
+DATA_DIR = "/home/parallels/dev/gkg-processor/data/"
 
 # Differs slightly from GKG codebook to avoid dots in key names
 GKG_COLUMN_NAMES = ["GKGRECORDID", 

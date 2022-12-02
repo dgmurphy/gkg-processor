@@ -6,6 +6,7 @@ from lib.constants import *
 from lib.utils import *
 import pandas as pd 
 import os
+import sys
 import pymongo
 
 def persons_orgs_filter(df, terms):
@@ -116,6 +117,10 @@ def process_gkgs(db, persons_orgs):
 
 
 def main():
+
+    if not os.path.isdir(DATA_DIR):
+        logging.critical("Data dir missing. Exiting.")
+        sys.exit()
 
     try:
         logging.info("Connecting to MongoDB...")
