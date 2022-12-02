@@ -75,12 +75,11 @@ def process_gkgs(db, persons_orgs):
                 on_bad_lines='skip')
                 #logging.info("gkg df shape " + str(df.shape))
 
+                # adding column with iso date
+                df['ZIPDATE'] = zipdate
+
                 #logging.info("Applying filters...")
                 fdf = persons_orgs_filter(df, persons_orgs)
-
-                # adding column with iso date
-                fdf['ZIPDATE'] = zipdate
-
                 rows_found += fdf.shape[0]
 
                 # Upsert the GKG records into the GKG Records Collection
@@ -102,8 +101,9 @@ def process_gkgs(db, persons_orgs):
 
                 zips_count += 1
                 if zips_count % 5 == 0:
-                    logging.info(f"Processed {str(zips_count)} zips.")
-                    logging.info(f"Collected {str(rows_found)} rows.")
+                    logging.info(f"Collected {str(rows_found)} rows from {str(zips_count)} zips.")
+                    
+                if zips_count % 100 == 0:
                     logging.info(f"last file was {file_path} ")
                     logging.info(f"{str(numdocs(db))} in queue.")
 
