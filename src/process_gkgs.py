@@ -49,6 +49,7 @@ def process_gkgs(db, persons_orgs):
     rows_found = 0
     logging.info(f"Found {str(numdocs(db))} gkg zip records.")
     logging.info(f"Processing zips...")
+    err_zurl = ""
 
     while True:
         
@@ -62,6 +63,10 @@ def process_gkgs(db, persons_orgs):
             latest_gkg = db[ZIPS_MASTER].find().sort("date", -1).limit(1)[0]
             zurl = latest_gkg.get("url")
             file_path = DATA_DIR + fname_from_url(zurl)
+
+            if zurl == err_zurl:
+                logging.critical(f"Stuck processing {zurl}")
+                sys.exit()
 
             try:
                 # Download the zip file
@@ -88,7 +93,11 @@ def process_gkgs(db, persons_orgs):
                     fdf_dict = fdf.to_dict("records")
                     for item in fdf_dict:
                         gkgid = item["GKGRECORDID"]
-                        db[GKG_RECORDS].update_one({'GKGRECORDID': gkgid}, {"$set": item}, upsert=True)
+                        try:
+                            db[GKG_RECORDS].update_one({'GKGRECORDID': gkgid}, {"$set": item}, upsert=True)
+                        except Exception as e:
+                            logging.error(str(e))
+                            logging.error("Error upserting GKG record")
 
                 # Delete the zip file
                 if os.path.isfile(file_path):
@@ -109,11 +118,31 @@ def process_gkgs(db, persons_orgs):
                     logging.info(f"{str(numdocs(db))} in queue.")
 
             except Exception as e:
+
+                err_zurl = zurl
+
                 logging.error(f"Error processing {zurl}")
                 logging.error(str(e))
-                # Don't retry this file
-                db[ZIPS_COMPLETED].insert_one(latest_gkg)
-                db[ZIPS_MASTER].delete_one({"_id": latest_gkg["_id"]})
+                
+                try:
+                    # Don't retry this file
+                    db[ZIPS_COMPLETED].insert_one(latest_gkg)
+                except Exception as e:
+                    logging.error(str(e))
+                
+                try:
+                    db[ZIPS_MASTER].delete_one({"_id": latest_gkg["_id"]})
+                except Exception as e:
+                    logging.error(str(e))
+
+                try:
+                    # Delete the zip file
+                    if os.path.isfile(file_path):
+                        os.remove(file_path)
+
+                except Exception as e:
+                    logging.error(f"Error removing {file_path}")
+                
 
 
 def main():
