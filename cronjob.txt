@@ -1,0 +1,1 @@
+#* * * * * /home/parallels/dev/gkg-processor/process.sh >> /home/parallels/dev/gkg-processor/cronlog.txt 2>&1 
