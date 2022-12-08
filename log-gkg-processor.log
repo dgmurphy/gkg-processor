@@ -1,0 +1,65 @@
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: Reading org_mentions.csv ...
+INFO: consolidated df shape: (10004, 1)
+INFO: writing all_orgs.csv
+INFO: creating pairs
+INFO: building edge df
+INFO: writing all_orgs_edges.csv
+INFO: writing all_orgs_edges_ids.csv
+INFO: Filtering edge list for link-strength > 150
+INFO: writing top_orgs_edges_ids.csv
+INFO: writing top_orgs.csv
+INFO: DONE
+
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: Reading org_mentions.csv ...
+INFO: consolidated df shape: (10004, 1)
+INFO: writing all_orgs.csv
+INFO: creating pairs
+INFO: building edge df
+INFO: writing all_orgs_edges.csv
+INFO: writing all_orgs_edges_ids.csv
+INFO: Filtering edge list for link-strength > 300
+INFO: writing top_orgs_edges_ids.csv
+INFO: writing top_orgs.csv
+INFO: DONE
+
+INFO: Reading org_mentions.csv ...
+INFO: consolidated df shape: (10004, 1)
+INFO: writing all_orgs.csv
+INFO: creating pairs
+INFO: building edge df
+INFO: writing all_orgs_edges.csv
+INFO: writing all_orgs_edges_ids.csv
+INFO: Filtering edge list for link-strength > 75
+INFO: writing top_orgs_edges_ids.csv
+INFO: writing top_orgs.csv
+INFO: DONE
+
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: Reading org_mentions.csv ...
+INFO: consolidated df shape: (10004, 1)
+INFO: writing all_orgs.csv
+INFO: creating pairs
+INFO: building edge df
+INFO: writing all_orgs_edges.csv
+INFO: writing all_orgs_edges_ids.csv
+INFO: Filtering edge list for link-strength > 25
+INFO: writing top_orgs_edges_ids.csv
+INFO: writing top_orgs.csv
+INFO: DONE
+
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
+INFO: writing /home/parallels/dev/gkg-processor/data/Orgs-graph.html
